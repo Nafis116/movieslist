@@ -7,13 +7,15 @@ class SearchBox extends Component {
     }
     searchLineChangeHandler = (e) => {
         this.setState({ searchLine: e.target.value });
+        
     }
+
+    
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
     }
     render() {
         const { searchLine } = this.state;
-
         return (
             <div className="search-box">
                 <form className="search-box__form" onSubmit={this.searchBoxSubmitHandler}>
