@@ -6,13 +6,25 @@ import store from '../../redux/store';
 
 class Movies extends Component {
     state = {
-        movies: []
-    }
+        movies: [],
+        searchLine: ""
+    };
 
     componentDidMount() {
-        const state = store.getState();
-        this.setState({movies: state.movies})
-    }
+        store.subscribe(() => {
+            const state = store.getState();
+            //console.log(state);
+            fetch(`http://www.omdbapi.com/?s=${state.searchLine}&apikey=fb93debc`)
+            .then(resp => {
+                return resp.json();
+            })
+            .then(data => {
+                this.setState({
+                    movies: data.Search
+                });
+            })
+        })
+    };
 
     render() { 
         return ( 

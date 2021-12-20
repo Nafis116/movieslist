@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import store from '../../redux/store';
 import './SearchBox.css';
 
 class SearchBox extends Component {
@@ -6,14 +7,22 @@ class SearchBox extends Component {
         searchLine: ''
     }
     searchLineChangeHandler = (e) => {
-        this.setState({ searchLine: e.target.value });
-        
+        this.setState({ searchLine: e.target.value });   
     }
-
     
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
     }
+
+    searchMovies = () => {
+        store.dispatch({
+            type: "SEARCH_MOVIES",
+            payload:{
+                searchLine: this.state.searchLine
+            }
+        })
+    }
+
     render() {
         const { searchLine } = this.state;
         return (
@@ -33,6 +42,7 @@ class SearchBox extends Component {
                         type="submit"
                         className="search-box__form-submit"
                         disabled={!searchLine}
+                        onClick={this.searchMovies}
                     >
                         Искать
                     </button>
