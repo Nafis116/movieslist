@@ -13,7 +13,6 @@ class Movies extends Component {
     componentDidMount() {
         store.subscribe(() => {
             const state = store.getState();
-            //console.log(state);
             fetch(`http://www.omdbapi.com/?s=${state.searchLine}&apikey=fb93debc`)
             .then(resp => {
                 return resp.json();

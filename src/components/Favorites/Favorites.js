@@ -49,9 +49,6 @@ class Favorites extends Component {
             title: "",
             movies: this.state.listMovFavorites
         };
-        // this.state.listMovFavorites.forEach(elem => {
-        //     data.movies.push(elem.id);
-        // });
         data.title = this.state.title;
 
         fetch('https://acb-api.algoritmika.org/api/movies/list', {
@@ -84,7 +81,7 @@ class Favorites extends Component {
                         </li> 
                     ))} 
                 </ul>
-                <button onClick={() => this.handleSave()} type="button" className={this.state.showLink ? "favorites__save" : "favorites__save-none"}>Сохранить список</button>
+                <button onClick={() => this.handleSave()} type="button" disabled={!this.state.title} className={this.state.showLink ? "favorites__save" : "favorites__save-none"}>Сохранить список</button>
                 </div>
                 <div className={this.state.showLink ? "favorites-link" : ""}>
                     <Link to={`/list/${this.state.postId}`}>Перейти к списку</Link>
